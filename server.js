@@ -43,6 +43,18 @@ app.get("/test", async (req, res) => {
 require("dotenv").config();
   const dbConfig = require("./config/db.config");
   db.mongoose
+  .connect(process.env.MONGODB_CONNECT_URI,{
+    useNewUrlParser:true,
+  })
+  .then(()=>{
+    console.log("Successfully connect to MongoDB")
+  })
+  .catch(err=>{
+    console.error("Connection error",err); 
+    process.exit();
+});
+
+/*   db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`,{
     useNewUrlParser:true,
   }) 
@@ -53,7 +65,7 @@ require("dotenv").config();
 .catch(err=>{
     console.error("Connection error",err); 
     process.exit();
-});
+}); */
 const app = express();
 var corsOptions = {
     origin : "http://localhost:8081"
