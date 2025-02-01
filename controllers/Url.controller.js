@@ -33,13 +33,13 @@ exports.shortenUrl = async(req,res)=>{
 
 
 exports.testing = async(req,res)=>{
-    console.log("testing");
+    
     res.send("Test route working!");
 }
 
 exports.getUrls = async(req,res)=>{
     try {
-        console.log("bruh")
+        
         const urls = await Url.find();
         if(!urls){
           console.log("empty")
